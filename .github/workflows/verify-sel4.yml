@@ -1,0 +1,23 @@
+name: Verify Official seL4 Foundation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-upstream-sel4:
+    name: Verify pinned upstream seL4
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout TrillionOS-Security
+        uses: actions/checkout@v4
+
+      - name: Fetch and verify official upstream seL4
+        shell: bash
+        run: bash scripts/verify-sel4-source.sh
