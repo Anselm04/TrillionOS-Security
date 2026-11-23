@@ -18,6 +18,9 @@ jobs:
       - name: Checkout TrillionOS-Security
         uses: actions/checkout@v4
 
+      - name: Verify agent admission policy with offline tests
+        run: node --test runtime/agent-policy.test.mjs
+
       - name: Fetch and verify official upstream seL4
         shell: bash
         run: bash scripts/verify-sel4-source.sh
